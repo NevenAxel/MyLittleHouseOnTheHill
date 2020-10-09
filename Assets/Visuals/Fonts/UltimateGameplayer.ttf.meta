@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 9ffc49fff566f2248851b6c3c7a2045d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Ultimate Gameplayer
+  fontNames:
+  - Ultimate Gameplayer
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a20cead476e827742b6a3f2964192330, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
