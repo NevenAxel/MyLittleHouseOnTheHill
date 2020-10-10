@@ -11774,21 +11774,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeveUpManager
       objectReference: {fileID: 0}
-    - target: {fileID: 3238948909712467670, guid: 89196f09d1be7cc42ae6cba68f9696ad,
-        type: 3}
-      propertyPath: xpPalliers.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3238948909712467670, guid: 89196f09d1be7cc42ae6cba68f9696ad,
-        type: 3}
-      propertyPath: xpPalliers.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3238948909712467670, guid: 89196f09d1be7cc42ae6cba68f9696ad,
-        type: 3}
-      propertyPath: xpPalliers.Array.data[2]
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 3238948909712467671, guid: 89196f09d1be7cc42ae6cba68f9696ad,
         type: 3}
       propertyPath: m_LocalPosition.x
