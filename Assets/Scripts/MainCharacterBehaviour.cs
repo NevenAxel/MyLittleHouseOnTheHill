@@ -71,6 +71,15 @@ public class MainCharacterBehaviour : MonoBehaviour
             currentHouse = null;
     }
 
+    public void buffSpeed(float buff)
+    {
+        speed *= buff;
+    }
+
+    public void buffCutTime(float buff)
+    {
+        timeChop /= buff;
+    }
     void Chop(Wood wood)
     {
         timeLastChop = Time.time;

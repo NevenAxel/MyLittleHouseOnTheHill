@@ -16,6 +16,8 @@ public class LevelUpUI : MonoBehaviour
     [SerializeField]
     string nameString;
     public int indexPallier;
+    [SerializeField]
+    LevelUpEffectParent effect;
     public void OnMouseOverEvent()
     {
         LevelUpManager.instance.description.SetActive(true);
@@ -56,6 +58,7 @@ public class LevelUpUI : MonoBehaviour
             isUnlocked = true;
             image.color = new Color(1, 1, 1, 1f);
             FindObjectOfType<LevelUpManager>().SetChoose(this);
+            effect.OnActivate();
         }
     }
 }

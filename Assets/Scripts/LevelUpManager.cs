@@ -16,8 +16,11 @@ public class LevelUpManager : MonoBehaviour
     GameObject popup;
     [SerializeField]
     List<LevelUpUI> levels;
+    [SerializeField]
+    Text levelText;
     int currentPallier = 0;
     int currentXp;
+    bool isLevelUp = false;
     public GameObject description;
     public Text descriptionText;
     public Text nameText;
@@ -41,6 +44,8 @@ public class LevelUpManager : MonoBehaviour
             UILevelUp.SetActive(true);
             popup.SetActive(false);
             pallierImage.overrideSprite = sprites[currentPallier];
+            levelText.text = "Niveau : " + currentPallier;
+            isLevelUp = true;
             foreach(LevelUpUI lui in levels)
             {
                 if(lui.indexPallier == currentPallier)
@@ -53,6 +58,8 @@ public class LevelUpManager : MonoBehaviour
 
     public void ToggleLevelUp()
     {
+        if (isLevelUp)
+            return;
         popup.SetActive(false);
         UILevelUp.SetActive(!UILevelUp.activeSelf);
     }
@@ -66,5 +73,7 @@ public class LevelUpManager : MonoBehaviour
                 lui.SetNotChoosed();
             }
         }
+        UILevelUp.SetActive(false);
+        isLevelUp = false;
     }
 }
