@@ -9,6 +9,7 @@ public class Completition
     public string _description;
     public Sprite _sprite;
     public int Milestone;
+    
     public Completition(string name, string description, int milestone)
     {
         _description = description;
