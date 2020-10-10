@@ -39,6 +39,10 @@ public class MainCharacterBehaviour : MonoBehaviour
     CircularCollider circularCollider;
     [SerializeField]
     int comboTreshold;
+    [SerializeField]
+    int midFailtreshold;
+    [SerializeField]
+    int failTreshold;
     List<int> currentSteps;
     GameObject currentComboGo;
     float timeLastChop;
@@ -49,6 +53,23 @@ public class MainCharacterBehaviour : MonoBehaviour
     int currentBuffAck = 0;
     bool circular = false;
     public EventHandler<OnWoodChoppedEventArgs> onWoodChopped;
+    int treeCut = 0;
+    int endOfWorld;
+    public enum ESuccess
+    {
+        eSuccess,
+        eMid,
+        eFail
+    }
+    public ESuccess GetSuccess()
+    {
+        if (treeCut < midFailtreshold)
+            return ESuccess.eSuccess;
+        else if (treeCut < failTreshold)
+            return ESuccess.eMid;
+        else
+            return ESuccess.eFail;
+    }
     public class OnWoodChoppedEventArgs : EventArgs
     {
         public int wood;
@@ -117,7 +138,7 @@ public class MainCharacterBehaviour : MonoBehaviour
             }
         }
     }
-    int endOfWorld;
+
     public bool ShouldFollow()
     {
         return (endOfWorld == 0);
@@ -127,6 +148,17 @@ public class MainCharacterBehaviour : MonoBehaviour
         if(other.CompareTag("EndOfWorld"))
         {
             endOfWorld++;
+        }
+        if (other.CompareTag("PubSpot"))
+        {
+            Debug.Log("aaa");
+            if(GetSuccess() == ESuccess.eSuccess)
+            {
+                Debug.Log("bbb");
+                PubManager.instance.DisplayPub(other.GetComponent<PubSpot>().pub);
+                other.gameObject.SetActive(false);
+            }
+
         }
         House temp = other.GetComponent<House>();
         if (temp != null)
@@ -205,7 +237,7 @@ public class MainCharacterBehaviour : MonoBehaviour
         int forceChop = baseChopForce + UnityEngine.Random.Range(0, chopRandom + 1);
         if (wood.GetChopped(forceChop))
         {
-             Debug.Log("Wood chopped");
+            treeCut++;
             currentWood += woodAdd + UnityEngine.Random.Range(0, woodAddRandom + 1);
             woodText.text = currentWood.ToString();
             onWoodChopped?.Invoke(this, new OnWoodChoppedEventArgs() { wood = currentWood});

@@ -160,6 +160,9 @@ MonoBehaviour:
   buffDamageCombo: 0
   stepsCombo: 
   circularCollider: {fileID: 0}
+  comboTreshold: 0
+  midFailtreshold: 20
+  failTreshold: 50
 --- !u!54 &1373015518
 Rigidbody:
   m_ObjectHideFlags: 0
