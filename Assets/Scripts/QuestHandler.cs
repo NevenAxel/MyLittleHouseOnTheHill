@@ -18,6 +18,7 @@ public class QuestHandler : MonoBehaviour
     {
         public int pointGained;
         public CompletitionQuest quest;
+        public CompletitionQuest nextQuest = null;
     }
 
     private void Start()
@@ -37,13 +38,18 @@ public class QuestHandler : MonoBehaviour
         StartCoroutine(LerpSize(e.quest.QuestUI.progressBarTemp.transform, normalizedStartingAdvancement, normalizedAdvancement, progressBarDuration));
         if (e.quest.pointGained >= e.quest.Milestone)
         {
-            // animation fade out
-            e.quest.QuestUI.advancementNumber.text = e.quest.Milestone + " / " + e.quest.Milestone;
-            Destroy(e.quest.QuestUI.gameObject, 0.5f);
-            e.quest.inAction = false;
-            
+            EndQuest(true, e.quest, e.nextQuest);
         }
     }
+
+    private void EndQuest(bool completed, CompletitionQuest quest, CompletitionQuest nextQuest = null)
+    {
+        // animation fade out
+        quest.QuestUI.advancementNumber.text = quest.Milestone + " / " + quest.Milestone;
+        Destroy(quest.QuestUI.gameObject, 1f);
+        quest.inAction = false;
+    }
+
     IEnumerator LerpSize(Transform transform, float origin, float endPoint, float duration, float delay = 0f)
     {
         float timer = 0;
@@ -59,13 +65,28 @@ public class QuestHandler : MonoBehaviour
 
     private void OnQuestTookHandler(object sender, OnQuestTookdEventArgs e)
     {
-        e.quest.QuestUI = Instantiate(questUIprefab, gameObject.transform);
+        if(e.quest.QuestUI == null)
+            e.quest.QuestUI = Instantiate(questUIprefab, gameObject.transform);
         e.quest.QuestUI.achievementDescription.text = e.quest._description;
         e.quest.QuestUI.achievmentTitle.text = e.quest._name;
         e.quest.QuestUI.advancementNumber.text = e.quest.pointGained + " / " + e.quest.Milestone;
         e.quest.QuestUI.progressBar.transform.localScale = new Vector3(0, 0, 0);
         e.quest.QuestUI.progressBarTemp.transform.localScale = new Vector3(0, 0, 0);
-
+        e.quest.QuestUI.timer.text = Math.Round(e.quest.timeToComplete, 1).ToString();
+        if(e.quest.timeToComplete != 0)
+            StartCoroutine(CountDownQuest(e.quest));
     }
 
+    IEnumerator CountDownQuest(CompletitionQuest quest)
+    {
+        float timer = quest.timeToComplete;
+        while(timer > 0)
+        {
+            if(quest.inAction)
+                quest.QuestUI.timer.text = Math.Round(timer, 1).ToString();
+            timer -= Time.deltaTime;          
+            yield return null;
+        }
+        EndQuest(false, quest);
+    }
 }

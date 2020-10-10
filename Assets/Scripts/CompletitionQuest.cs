@@ -9,6 +9,9 @@ public class CompletitionQuest : Completition
     public AchievementUI QuestUI;
     public int pointGained = 0;
     public bool inAction = false;
+
+    
+
     public CompletitionQuest(string name, string description, int milestone) : base(name, description, milestone)
     {
     }

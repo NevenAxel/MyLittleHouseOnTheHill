@@ -9,7 +9,9 @@ public class QuestTrigger : MonoBehaviour
     public CompletitionQuest _quest;
     QuestHandler questHandler;
     bool activated;
+
     
+
 
     private void Start()
     {
