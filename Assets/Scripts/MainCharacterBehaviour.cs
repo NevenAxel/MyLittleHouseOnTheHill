@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class MainCharacterBehaviour : MonoBehaviour
 {
     [SerializeField]
@@ -18,6 +18,14 @@ public class MainCharacterBehaviour : MonoBehaviour
     float timeChop;
     float timeLastChop;
     int currentWood;
+    House currentHouse = null;
+    public EventHandler<OnWoodChoppedEventArgs> onWoodChopped;
+    public class OnWoodChoppedEventArgs : EventArgs
+    {
+
+    }
+    
+         
     void Start()
     {
         timeLastChop = Time.time - timeChop;
@@ -28,7 +36,14 @@ public class MainCharacterBehaviour : MonoBehaviour
         transform.position += move * speed * Time.deltaTime;
     }
 
-    private void OnTrigerStay(Collider collider)
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && currentHouse != null)
+        {
+            currentHouse.Build();
+        }
+    }
+    private void OnTriggerStay(Collider collider)
     {
         if (!Input.GetKey(KeyCode.Space))
             return;
@@ -41,15 +56,29 @@ public class MainCharacterBehaviour : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        House temp = other.GetComponent<House>();
+        if (temp != null)
+            currentHouse = temp;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        House temp = other.GetComponent<House>();
+        if (temp != null)
+            currentHouse = null;
+    }
+
     void Chop(Wood wood)
     {
         timeLastChop = Time.time;
-        int forceChop = baseChopForce + Random.Range(0, chopRandom + 1);
+        int forceChop = baseChopForce + UnityEngine.Random.Range(0, chopRandom + 1);
         if (wood.GetChopped(forceChop))
         {
-            currentWood += woodAdd + Random.Range(0, woodAddRandom+1);
-            Debug.Log(currentWood);
+            currentWood += woodAdd + UnityEngine.Random.Range(0, woodAddRandom+1);
+            onWoodChopped?.Invoke(this, new OnWoodChoppedEventArgs());
         }
-
     }
 }

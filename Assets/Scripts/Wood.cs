@@ -9,9 +9,7 @@ public class Wood : MonoBehaviour
 
     int currentLife;
     [SerializeField]
-    GameObject parentLife;
-    [SerializeField]
-    Image woundBar;
+    Bar lifeBar;
     private void Awake()
     {
         currentLife = baseLife;
@@ -19,7 +17,7 @@ public class Wood : MonoBehaviour
     public bool GetChopped(int chopForce)
     {
         currentLife -= chopForce;
-        SetUiLife();
+        lifeBar.SetUi((float)currentLife / (float)baseLife);
         if(currentLife <= 0)
         {
             Destroy(this.gameObject);
@@ -27,9 +25,5 @@ public class Wood : MonoBehaviour
         }
         return false;
     }
-    public void SetUiLife()
-    {
-        parentLife.SetActive(true);
-        woundBar.rectTransform.offsetMin = new Vector2((float)currentLife/(float)baseLife, woundBar.rectTransform.offsetMin.y);
-    }
+
 }
