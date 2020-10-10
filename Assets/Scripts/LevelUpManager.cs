@@ -46,7 +46,8 @@ public class LevelUpManager : MonoBehaviour
             pallierImage.overrideSprite = sprites[currentPallier];
             levelText.text = "Niveau : " + currentPallier;
             isLevelUp = true;
-            foreach(LevelUpUI lui in levels)
+            Time.timeScale =  0 ;
+            foreach (LevelUpUI lui in levels)
             {
                 if(lui.indexPallier == currentPallier)
                 {
@@ -62,6 +63,7 @@ public class LevelUpManager : MonoBehaviour
             return;
         popup.SetActive(false);
         UILevelUp.SetActive(!UILevelUp.activeSelf);
+        Time.timeScale = (UILevelUp.activeSelf ? 0 : 1);
     }
 
     public void SetChoose(LevelUpUI ui)
@@ -75,5 +77,6 @@ public class LevelUpManager : MonoBehaviour
         }
         UILevelUp.SetActive(false);
         isLevelUp = false;
+        Time.timeScale = 1;
     }
 }

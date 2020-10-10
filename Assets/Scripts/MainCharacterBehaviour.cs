@@ -21,10 +21,33 @@ public class MainCharacterBehaviour : MonoBehaviour
     Text woodText;
     [SerializeField]
     Text bravoText;
+    [SerializeField]
+    float timeComboBase;
+    [SerializeField]
+    float timeComboEnd;
+    [SerializeField]
+    int numberHitCombo;
+    [SerializeField]
+    GameObject PopupCombo;
+    [SerializeField]
+    Transform parentCombo;
+    [SerializeField]
+    int buffDamageCombo;
+    [SerializeField]
+    List<int> stepsCombo;
+    [SerializeField]
+    CircularCollider circularCollider;
+    [SerializeField]
+    int comboTreshold;
+    List<int> currentSteps;
+    GameObject currentComboGo;
     float timeLastChop;
     int currentWood;
+    int currentCombo = 0;
     House currentHouse = null;
     int currentBravos = 0;
+    int currentBuffAck = 0;
+    bool circular = false;
     public EventHandler<OnWoodChoppedEventArgs> onWoodChopped;
     public class OnWoodChoppedEventArgs : EventArgs
     {
@@ -35,7 +58,16 @@ public class MainCharacterBehaviour : MonoBehaviour
     void Start()
     {
         timeLastChop = Time.time - timeChop;
+        CopySteps();
     }
+
+    void CopySteps()
+    {
+        currentSteps = new List<int>();
+        foreach (int i in stepsCombo)
+            currentSteps.Add(i);
+    }
+
     void FixedUpdate()
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -48,21 +80,33 @@ public class MainCharacterBehaviour : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && currentHouse != null)
+        if(Input.GetKeyDown(KeyCode.Space))
         {
+            if(currentHouse != null)
             currentHouse.Build();
+            else if(circular)
+            {
+                circularCollider.CleanList();
+                List<Wood> woods = circularCollider.GetList();
+                if (woods.Count > 0)
+                {
+                    CalculateCombo();
+                    foreach (Wood w in woods)
+                        Chop(w, false);
+                }
+            }
         }
     }
     private void OnTriggerStay(Collider collider)
     {
-        if (!Input.GetKey(KeyCode.Space))
+        if (!Input.GetKey(KeyCode.Space) || circular)
             return;
         Wood wood = collider.GetComponent<Wood>();
         if (wood != null)
         {
             if(timeLastChop < Time.time - timeChop)
             {
-                Chop(wood);
+                Chop(wood, true);
             }
         }
     }
@@ -90,8 +134,50 @@ public class MainCharacterBehaviour : MonoBehaviour
     {
         timeChop /= buff;
     }
-    void Chop(Wood wood)
+
+    public void CalculateCombo()
     {
+        currentCombo++;
+        if (currentComboGo != null)
+        {
+            currentComboGo.GetComponent<ComboPopup>().Cancel();
+            Destroy(currentComboGo);
+        }
+        
+        if(currentSteps.Count> 0 && currentCombo>currentSteps[0])
+        {
+            currentSteps.Remove(currentSteps[0]);
+            if (currentSteps.Count > 0)
+            {
+                currentBuffAck++;
+                baseChopForce += buffDamageCombo;
+            }
+            else
+                circular = true;
+        }
+        if(currentCombo > comboTreshold)
+        {
+            currentComboGo = Instantiate(PopupCombo, parentCombo);
+            currentComboGo.transform.position = parentCombo.transform.position;
+            currentComboGo.GetComponent<ComboPopup>().SetUp(currentCombo, Mathf.Lerp(timeComboBase, timeComboEnd, Mathf.Min(currentCombo / numberHitCombo, 1)));
+        }
+
+    }
+
+
+    public void ResetCombo()
+    {
+        circular = false;
+        AddBravo(currentCombo);
+        baseChopForce -= currentBuffAck * buffDamageCombo;
+        currentBuffAck = 0;
+        currentCombo = 0;
+        CopySteps();
+    }
+    void Chop(Wood wood, bool combo)
+    {
+        if(combo)
+            CalculateCombo();
         timeLastChop = Time.time;
         int forceChop = baseChopForce + UnityEngine.Random.Range(0, chopRandom + 1);
         if (wood.GetChopped(forceChop))

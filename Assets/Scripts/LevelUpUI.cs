@@ -11,6 +11,7 @@ public class LevelUpUI : MonoBehaviour
     bool isUnlockable;
     bool isUnlocked;
     bool isNotChosed;
+    bool isChosed;
     [SerializeField]
     string descriptionString;
     [SerializeField]
@@ -53,12 +54,13 @@ public class LevelUpUI : MonoBehaviour
 
     public void OnClick()
     {
-        if(isUnlockable && !isNotChosed)
+        if(isUnlockable && !isNotChosed && !isChosed)
         {
             isUnlocked = true;
             image.color = new Color(1, 1, 1, 1f);
             FindObjectOfType<LevelUpManager>().SetChoose(this);
             effect.OnActivate();
+            isChosed = true;
         }
     }
 }
