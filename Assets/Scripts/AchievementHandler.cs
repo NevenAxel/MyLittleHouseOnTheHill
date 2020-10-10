@@ -110,7 +110,6 @@ public class AchievementHandler : MonoBehaviour
             
         currentAchievementPrefab.achievementDescription.text = achievement._description;
         currentAchievementPrefab.achievmentTitle.text = achievement._name;
-        currentAchievementPrefab.achievementImage.sprite = achievement._sprite;
 
         float normalizedStartingAdvancement = (float)(advancement - 1 - previousMilestone) / (float)(achievement.Milestone - previousMilestone);
         float normalizedAdvancement = (float)(advancement - previousMilestone) / (float)(achievement.Milestone - previousMilestone);
@@ -136,7 +135,6 @@ public class AchievementHandler : MonoBehaviour
             
         currentAchievementPrefab.achievementDescription.text = achievement._description;
         currentAchievementPrefab.achievmentTitle.text = achievement._name;
-        currentAchievementPrefab.achievementImage.sprite = achievement._sprite;
         currentAchievementPrefab.progressBar.transform.localScale = new Vector3(1, 1, 1);
     }
     IEnumerator LerpSize(Transform transform, float origin, float endPoint, float duration, float delay = 0f)

@@ -48,6 +48,7 @@ public class QuestHandler : MonoBehaviour
         if (quest._name == "Récolte")
         {
             InitialiseQuest(secondQuest);
+            quest.inAction = false;
         }
         else
         {
