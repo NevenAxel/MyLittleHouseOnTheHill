@@ -24,11 +24,11 @@ public class House : MonoBehaviour
             {
                 steps[step - 1].SetActive(false);
                 steps[step].SetActive(true);
-            }
-            else
-            {
-                onWin?.Invoke(this, new EventArgs());
-                Debug.Log("Win");
+                if(step == steps.Count - 1)
+                {
+                    onWin?.Invoke(this, new EventArgs());
+                    Debug.Log("Win");
+                }
             }
         }
         bar.SetUi((float)minorStep / (float)numberOfTapBeforeNextStep);
