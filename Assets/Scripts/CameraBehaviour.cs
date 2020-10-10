@@ -22,6 +22,11 @@ public class CameraBehaviour : MonoBehaviour
             isParentedToPlayer = true;
     }
 
+    public void Unparent()
+    {
+        isParentedToPlayer = false;
+    }
+
     private void FixedUpdate()
     {
         if(isParentedToPlayer)
