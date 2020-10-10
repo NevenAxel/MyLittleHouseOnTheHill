@@ -22,7 +22,7 @@ public class CameraBehaviour : MonoBehaviour
             isParentedToPlayer = true;
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if(isParentedToPlayer)
         {
