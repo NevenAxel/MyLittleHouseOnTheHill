@@ -11,9 +11,11 @@ public class CameraBehaviour : MonoBehaviour
     float lerp;
     [SerializeField]
     int firstMissionWood;
+    MainCharacterBehaviour character;
     private void Awake()
     {
-        FindObjectOfType<MainCharacterBehaviour>().onWoodChopped += OnWoodChopped;
+        character = FindObjectOfType<MainCharacterBehaviour>();
+        character.onWoodChopped += OnWoodChopped;
     }
 
     public void OnWoodChopped(object sender, MainCharacterBehaviour.OnWoodChoppedEventArgs e)
@@ -29,7 +31,7 @@ public class CameraBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isParentedToPlayer)
+        if(isParentedToPlayer && character.ShouldFollow())
         {
             transform.position = Vector3.Lerp(transform.position, positionToFollow.transform.position, lerp);
         }

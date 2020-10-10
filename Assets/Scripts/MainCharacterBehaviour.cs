@@ -117,9 +117,17 @@ public class MainCharacterBehaviour : MonoBehaviour
             }
         }
     }
-
+    int endOfWorld;
+    public bool ShouldFollow()
+    {
+        return (endOfWorld == 0);
+    }
     private void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("EndOfWorld"))
+        {
+            endOfWorld++;
+        }
         House temp = other.GetComponent<House>();
         if (temp != null)
         {
@@ -131,6 +139,10 @@ public class MainCharacterBehaviour : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.CompareTag("EndOfWorld"))
+        {
+            endOfWorld--;
+        }
         House temp = other.GetComponent<House>();
         if (temp != null)
             currentHouse = null;
