@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: c4094b9eb2ffd04f9953b27547472896
+=======
+guid: 0a0106dd6cc67d3d3a68ce45b6be5dea
+>>>>>>> origin/feature/shader
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
