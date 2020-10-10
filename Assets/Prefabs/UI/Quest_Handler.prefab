@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2773674364650577233}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -116,6 +116,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questUIprefab: {fileID: 8434498260404565058, guid: 808d72c599b5cfa4483cdb14d0e4fb19,
     type: 3}
+  secondQuest:
+    _name: Construire son chez-sois
+    _description: Aller en haut de la colline pour construire votre chez-vous
+    _sprite: {fileID: 0}
+    Milestone: 1
+    timeToComplete: 0
+    QuestUI: {fileID: 0}
+    pointGained: 0
+    inAction: 0
+  progressBarDuration: 0.25
+--- !u!65 &377847097
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2773674365436936267}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6013230574413132807
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -123,6 +146,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2773674364650577234}
     m_Modifications:
+    - target: {fileID: 2197613229524267915, guid: 808d72c599b5cfa4483cdb14d0e4fb19,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8434498260404565059, guid: 808d72c599b5cfa4483cdb14d0e4fb19,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -233,8 +261,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Quest
       objectReference: {fileID: 0}
+    - target: {fileID: 8434498260464783327, guid: 808d72c599b5cfa4483cdb14d0e4fb19,
+        type: 3}
+      propertyPath: m_Text
+      value: "R\xE9colter 10 de bois pour construire votre maison"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808d72c599b5cfa4483cdb14d0e4fb19, type: 3}
+--- !u!1 &2773674365436936267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8434498260404565068, guid: 808d72c599b5cfa4483cdb14d0e4fb19,
+    type: 3}
+  m_PrefabInstance: {fileID: 6013230574413132807}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2773674365436936260 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8434498260404565059, guid: 808d72c599b5cfa4483cdb14d0e4fb19,
