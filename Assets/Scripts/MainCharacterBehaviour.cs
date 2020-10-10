@@ -77,6 +77,7 @@ public class MainCharacterBehaviour : MonoBehaviour
         int forceChop = baseChopForce + UnityEngine.Random.Range(0, chopRandom + 1);
         if (wood.GetChopped(forceChop))
         {
+             Debug.Log("Wood chopped");
             currentWood += woodAdd + UnityEngine.Random.Range(0, woodAddRandom + 1);
             onWoodChopped?.Invoke(this, new OnWoodChoppedEventArgs() { wood = currentWood});
         }
