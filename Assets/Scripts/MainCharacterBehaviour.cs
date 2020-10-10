@@ -22,7 +22,7 @@ public class MainCharacterBehaviour : MonoBehaviour
     public EventHandler<OnWoodChoppedEventArgs> onWoodChopped;
     public class OnWoodChoppedEventArgs : EventArgs
     {
-
+        public int wood;
     }
     
          
@@ -77,8 +77,8 @@ public class MainCharacterBehaviour : MonoBehaviour
         int forceChop = baseChopForce + UnityEngine.Random.Range(0, chopRandom + 1);
         if (wood.GetChopped(forceChop))
         {
-            currentWood += woodAdd + UnityEngine.Random.Range(0, woodAddRandom+1);
-            onWoodChopped?.Invoke(this, new OnWoodChoppedEventArgs());
+            currentWood += woodAdd + UnityEngine.Random.Range(0, woodAddRandom + 1);
+            onWoodChopped?.Invoke(this, new OnWoodChoppedEventArgs() { wood = currentWood});
         }
     }
 }
