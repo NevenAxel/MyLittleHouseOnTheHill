@@ -8,4 +8,6 @@ public class AchievementUI : MonoBehaviour
     [SerializeField] public Text achievmentTitle;
     [SerializeField] public Text achievementDescription;
     [SerializeField] public Image achievementImage;
+    [SerializeField] public Transform progressBar;
+    [SerializeField] public Transform progressBarTemp;
 }
