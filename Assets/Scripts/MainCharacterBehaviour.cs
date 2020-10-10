@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 public class MainCharacterBehaviour : MonoBehaviour
 {
@@ -16,9 +17,14 @@ public class MainCharacterBehaviour : MonoBehaviour
     int woodAddRandom;
     [SerializeField]
     float timeChop;
+    [SerializeField]
+    Text woodText;
+    [SerializeField]
+    Text bravoText;
     float timeLastChop;
     int currentWood;
     House currentHouse = null;
+    int currentBravos = 0;
     public EventHandler<OnWoodChoppedEventArgs> onWoodChopped;
     public class OnWoodChoppedEventArgs : EventArgs
     {
@@ -35,7 +41,11 @@ public class MainCharacterBehaviour : MonoBehaviour
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         transform.position += move * speed * Time.deltaTime;
     }
-
+    public void AddBravo(int count)
+    {
+        currentBravos += count;
+        bravoText.text = currentBravos.ToString();
+    }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space) && currentHouse != null)
@@ -88,6 +98,7 @@ public class MainCharacterBehaviour : MonoBehaviour
         {
              Debug.Log("Wood chopped");
             currentWood += woodAdd + UnityEngine.Random.Range(0, woodAddRandom + 1);
+            woodText.text = currentWood.ToString();
             onWoodChopped?.Invoke(this, new OnWoodChoppedEventArgs() { wood = currentWood});
         }
     }
