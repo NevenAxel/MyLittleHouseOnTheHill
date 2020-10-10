@@ -10,7 +10,6 @@ public class QuestTrigger : MonoBehaviour
     QuestHandler questHandler;
     bool activated;
 
-    
 
 
     private void Start()
@@ -31,6 +30,6 @@ public class QuestTrigger : MonoBehaviour
     public void GainPointForQuest(int point)
     {
         if(_quest.inAction)
-            questHandler.OnGainPoint?.Invoke(this, new QuestHandler.GainPointEventArgs() { pointGained = point, quest = _quest });
+            questHandler.OnGainPoint?.Invoke(this, new QuestHandler.GainPointEventArgs() { pointGained = point, quest = _quest});
     }
 }

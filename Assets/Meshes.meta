@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d20d3f16460af5ba69ebed98795a8847
+=======
+guid: 881f9ffe42dc9f1418ee6b22afb4c65a
+>>>>>>> origin/feature/shader
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
