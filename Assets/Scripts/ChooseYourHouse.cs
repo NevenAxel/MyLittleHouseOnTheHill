@@ -19,5 +19,6 @@ public class ChooseYourHouse : MonoBehaviour
         buildingChose = houseType;
         Time.timeScale = 1;
         gameObject.SetActive(false);
+        // Send the building type to GameManager ou autre
     }
 }
