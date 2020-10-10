@@ -71,6 +71,8 @@ public class MainCharacterBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        if (move.magnitude != 0)
+            Tutoriel.instance.HideWalk();
         transform.position += move * speed * Time.deltaTime;
     }
     public void AddBravo(int count)
@@ -83,7 +85,11 @@ public class MainCharacterBehaviour : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             if(currentHouse != null)
-            currentHouse.Build();
+            {
+                Tutoriel.instance.HideBuild();
+                currentHouse.Build();
+            }
+
             else if(circular)
             {
                 circularCollider.CleanList();
@@ -106,6 +112,7 @@ public class MainCharacterBehaviour : MonoBehaviour
         {
             if(timeLastChop < Time.time - timeChop)
             {
+                Tutoriel.instance.HideChop();
                 Chop(wood, true);
             }
         }
@@ -115,7 +122,11 @@ public class MainCharacterBehaviour : MonoBehaviour
     {
         House temp = other.GetComponent<House>();
         if (temp != null)
+        {
             currentHouse = temp;
+            Tutoriel.instance.EnableBuildTutoriel();
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
