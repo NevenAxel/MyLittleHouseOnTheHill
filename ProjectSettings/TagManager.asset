@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EndOfWorld
   - PubSpot
+  - ColliderTuto
   layers:
   - Default
   - TransparentFX
