@@ -27,9 +27,10 @@ public class Wood : MonoBehaviour
         if(currentLife <= 0)
         {
             // fx
-            Destroy(animator.gameObject);
-            Instantiate(fx, gameObject.transform);
-            Destroy(fx, 2f);
+
+            GameObject newFX = Instantiate(fx, gameObject.transform.position, Quaternion.identity);
+            Destroy(newFX, 2f);
+            Destroy(animator.gameObject, 2);
             Destroy(gameObject);
 
             onChopped.Invoke();
