@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +8,9 @@ public class CameraBehaviour : MonoBehaviour
     bool isParentedToPlayer;
     [SerializeField]
     GameObject positionToFollow;
+    bool following;
     [SerializeField]
-    float lerp;
+    float speed = 5f;
     [SerializeField]
     int firstMissionWood;
     MainCharacterBehaviour character;
@@ -29,11 +31,14 @@ public class CameraBehaviour : MonoBehaviour
         isParentedToPlayer = false;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if(isParentedToPlayer && character.ShouldFollow())
         {
-            transform.position = Vector3.Lerp(transform.position, positionToFollow.transform.position, lerp);
+
+                float step = speed * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, positionToFollow.transform.position, step);
+            
         }
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5152092366363672042}
   - component: {fileID: 8129053542436876879}
   - component: {fileID: 6283863337470281349}
+  - component: {fileID: 8642232012895685080}
   m_Layer: 0
   m_Name: fruitBush
   m_TagString: Untagged
@@ -80,3 +81,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!135 &8642232012895685080
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5491075526932817744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.0417242
+  m_Center: {x: -0.07404232, y: 0.7657883, z: -0.14762783}
