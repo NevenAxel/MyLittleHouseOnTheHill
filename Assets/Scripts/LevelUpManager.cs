@@ -20,6 +20,8 @@ public class LevelUpManager : MonoBehaviour
     Text levelText;
     [SerializeField]
     GameObject popupLevelUp;
+    [SerializeField]
+    Animation anim;
     int currentPallier = 0;
     int currentXp;
     bool isLevelUp = false;
@@ -56,6 +58,7 @@ public class LevelUpManager : MonoBehaviour
                     lui.SetUnlockable();
                 }
             }
+            anim.Play();
         }
     }
 
@@ -67,6 +70,8 @@ public class LevelUpManager : MonoBehaviour
         popupLevelUp.SetActive(false);
         UILevelUp.SetActive(!UILevelUp.activeSelf);
         Time.timeScale = (UILevelUp.activeSelf ? 0 : 1);
+        anim.Stop();
+
     }
 
     public void SetChoose(LevelUpUI ui)
