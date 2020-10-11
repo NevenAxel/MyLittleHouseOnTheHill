@@ -5,7 +5,9 @@ using System;
 public class House : MonoBehaviour
 {
     [SerializeField]
-    List<GameObject> steps;
+    List<GameObject> stepsHouse;
+    [SerializeField]
+    List<GameObject> stepsMill;
     [SerializeField]
     int numberOfTapBeforeNextStep;
     [SerializeField]
@@ -20,11 +22,11 @@ public class House : MonoBehaviour
         {
             minorStep = 0;
             step++;
-            if(step < steps.Count)
+            if(step < stepsHouse.Count)
             {
-                steps[step - 1].SetActive(false);
-                steps[step].SetActive(true);
-                if(step == steps.Count - 1)
+                stepsHouse[step - 1].SetActive(false);
+                stepsHouse[step].SetActive(true);
+                if(step == stepsHouse.Count - 1)
                 {
                     onWin?.Invoke(this, new EventArgs());
                     Debug.Log("Win");
