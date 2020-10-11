@@ -5,6 +5,8 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 public class Wood : MonoBehaviour
 {
+    [SerializeField] Animator animator;
+    [SerializeField] GameObject fx;
     [SerializeField]
     int baseLife;
     [SerializeField]
@@ -19,10 +21,17 @@ public class Wood : MonoBehaviour
     }
     public bool GetChopped(int chopForce)
     {
+        animator.SetTrigger("onHit");
         currentLife -= chopForce;
         lifeBar.SetUi((float)currentLife / (float)baseLife);
         if(currentLife <= 0)
         {
+            // fx
+            Destroy(animator.gameObject);
+            Instantiate(fx, gameObject.transform);
+            Destroy(fx, 2f);
+            Destroy(gameObject);
+
             onChopped.Invoke();
             Destroy(this.gameObject);
             return true;
