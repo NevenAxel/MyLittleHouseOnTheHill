@@ -41,7 +41,7 @@ public class CameraBehaviour : MonoBehaviour
         {
 
                 float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, positionToFollow.transform.position, step);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(character.gameObject.transform.position.x, character.gameObject.transform.position.y +20, character.gameObject.transform.position.z - 10) , step);
             
         }
     }
