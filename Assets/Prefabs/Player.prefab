@@ -186,8 +186,9 @@ MonoBehaviour:
   timeComboBase: 2
   timeComboEnd: 3
   numberHitCombo: 10
-  PopupCombo: {fileID: 0}
-  parentCombo: {fileID: 0}
+  PopupCombo: {fileID: 1755434437892661520, guid: 47c8644cbf096f44baa7545c02418435,
+    type: 3}
+  parentCombo: {fileID: 2824157496201466467}
   buffDamageCombo: 3
   stepsCombo: 03000000070000000c000000
   circularCollider: {fileID: 0}
