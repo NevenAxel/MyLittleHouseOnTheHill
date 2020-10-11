@@ -43,6 +43,8 @@ public class MainCharacterBehaviour : MonoBehaviour
     int midFailtreshold;
     [SerializeField]
     int failTreshold;
+    [SerializeField]
+    Animator anim;
     List<int> currentSteps;
     GameObject currentComboGo;
     float timeLastChop;
@@ -93,7 +95,14 @@ public class MainCharacterBehaviour : MonoBehaviour
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         if (move.magnitude != 0)
+        {
             Tutoriel.instance.HideWalk();
+            anim.SetBool("Walk", true);
+        }
+        else
+            anim.SetBool("Walk", false);
+
+
         transform.position += move * speed * Time.deltaTime;
     }
     public void AddBravo(int count)
@@ -118,6 +127,7 @@ public class MainCharacterBehaviour : MonoBehaviour
                 if (woods.Count > 0)
                 {
                     CalculateCombo();
+                    anim.SetTrigger("Circular");
                     foreach (Wood w in woods)
                         Chop(w, false);
                 }
@@ -134,6 +144,7 @@ public class MainCharacterBehaviour : MonoBehaviour
             if(timeLastChop < Time.time - timeChop)
             {
                 Tutoriel.instance.HideChop();
+                anim.SetTrigger("Cut");
                 Chop(wood, true);
             }
         }
