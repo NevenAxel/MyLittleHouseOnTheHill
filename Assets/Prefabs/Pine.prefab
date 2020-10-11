@@ -48,7 +48,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5464543080454968179}
-  fx: {fileID: 5125309730878706113, guid: ba5e0b23949e3e54eafdc5a5cc74821d, type: 3}
+  fxDestroy: {fileID: 5125309730878706113, guid: ba5e0b23949e3e54eafdc5a5cc74821d,
+    type: 3}
+  fxHit: {fileID: 8267707816878647224, guid: b5f1174c7eac2bd42b6a9ddd40f03493, type: 3}
+  originalMeshRend: {fileID: 3963720420401945151}
+  originalMeshFilter: {fileID: 1217381410299834101}
+  tronkMaterial: {fileID: 2100000, guid: 52cc6eee41989a543b14390c27120c10, type: 2}
+  tronkMesh: {fileID: -8790914311251544434, guid: 6761d49003b572e6e87bbb23545134ea,
+    type: 3}
   baseLife: 12
   onChopped:
     m_PersistentCalls:
@@ -238,6 +245,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LifeBar
       objectReference: {fileID: 0}
+    - target: {fileID: 4300754665870266308, guid: 84f15e4a6ebb9d449816ea63aa5c4abb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4444239021718745102, guid: 84f15e4a6ebb9d449816ea63aa5c4abb,
         type: 3}
       propertyPath: m_Color.g
@@ -395,6 +407,18 @@ PrefabInstance:
 --- !u!4 &2831315439107891536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3842865085061824503, guid: d3c644e33ca2eb646b9742ef6c263a42,
+    type: 3}
+  m_PrefabInstance: {fileID: 1305554657208606375}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &1217381410299834101 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 214839050833719378, guid: d3c644e33ca2eb646b9742ef6c263a42,
+    type: 3}
+  m_PrefabInstance: {fileID: 1305554657208606375}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3963720420401945151 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2675056486614533272, guid: d3c644e33ca2eb646b9742ef6c263a42,
     type: 3}
   m_PrefabInstance: {fileID: 1305554657208606375}
   m_PrefabAsset: {fileID: 0}
