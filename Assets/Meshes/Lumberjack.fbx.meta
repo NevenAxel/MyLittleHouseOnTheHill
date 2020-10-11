@@ -55,7 +55,7 @@ ModelImporter:
       name: humanoid|cutting_wood
       takeName: humanoid|cutting_wood
       internalID: 0
-      firstFrame: 0
+      firstFrame: 11.42
       lastFrame: 52
       wrapMode: 0
       orientationOffsetY: 0

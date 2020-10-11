@@ -97,10 +97,10 @@ public class MainCharacterBehaviour : MonoBehaviour
         if (move.magnitude != 0)
         {
             Tutoriel.instance.HideWalk();
-            anim.SetBool("Walk", true);
+            anim.SetBool("isMoving", true);
         }
         else
-            anim.SetBool("Walk", false);
+            anim.SetBool("isMoving", false);
 
 
         transform.position += move * speed * Time.deltaTime;
@@ -127,7 +127,7 @@ public class MainCharacterBehaviour : MonoBehaviour
                 if (woods.Count > 0)
                 {
                     CalculateCombo();
-                    anim.SetTrigger("Circular");
+                    anim.SetTrigger("isSuperCutting");
                     foreach (Wood w in woods)
                         Chop(w, false);
                 }
@@ -144,7 +144,7 @@ public class MainCharacterBehaviour : MonoBehaviour
             if(timeLastChop < Time.time - timeChop)
             {
                 Tutoriel.instance.HideChop();
-                anim.SetTrigger("Cut");
+                anim.SetTrigger("isCutting");
                 Chop(wood, true);
             }
         }

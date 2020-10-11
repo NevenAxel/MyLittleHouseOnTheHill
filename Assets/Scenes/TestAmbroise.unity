@@ -679,12 +679,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 51309945}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &56676536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6917535976423962697, guid: b129524ac5bf578409bd5702f5e49c22,
-    type: 3}
-  m_PrefabInstance: {fileID: 6846255704558242620}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &71205136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11632,7 +11626,7 @@ PrefabInstance:
         type: 3}
       propertyPath: positionToFollow
       value: 
-      objectReference: {fileID: 56676536}
+      objectReference: {fileID: 6846255704558242621}
     - target: {fileID: 1391062415537253894, guid: ba419f40f30438d459fcbfe85cd66917,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12113,6 +12107,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b129524ac5bf578409bd5702f5e49c22, type: 3}
+--- !u!1 &6846255704558242621 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2883049469579105332, guid: b129524ac5bf578409bd5702f5e49c22,
+    type: 3}
+  m_PrefabInstance: {fileID: 6846255704558242620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6929336318080126775
 PrefabInstance:
   m_ObjectHideFlags: 0
