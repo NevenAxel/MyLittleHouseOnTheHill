@@ -45,5 +45,6 @@ public class CameraTravelling : MonoBehaviour
                 yield return null;
             }
         }
+        FindObjectOfType<ReplayManager>().DisplayButton();
     }
 }
