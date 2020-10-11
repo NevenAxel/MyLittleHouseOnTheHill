@@ -179,7 +179,7 @@ MonoBehaviour:
   baseChopForce: 2
   chopRandom: 5
   woodAdd: 1
-  woodAddRandom: 2
+  woodAddRandom: 0
   timeChop: 1
   woodText: {fileID: 0}
   bravoText: {fileID: 0}
@@ -355,7 +355,7 @@ PrefabInstance:
     - target: {fileID: 527091063638289616, guid: 32afb076af6480140b638e73e1ecefb7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 527091063638289616, guid: 32afb076af6480140b638e73e1ecefb7,
         type: 3}
@@ -365,7 +365,7 @@ PrefabInstance:
     - target: {fileID: 527091063638289616, guid: 32afb076af6480140b638e73e1ecefb7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 527091063638289616, guid: 32afb076af6480140b638e73e1ecefb7,
         type: 3}
@@ -380,7 +380,7 @@ PrefabInstance:
     - target: {fileID: 527091063638289616, guid: 32afb076af6480140b638e73e1ecefb7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 527091063638289616, guid: 32afb076af6480140b638e73e1ecefb7,
         type: 3}

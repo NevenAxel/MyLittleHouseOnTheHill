@@ -94,6 +94,7 @@ public class MainCharacterBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Debug.Log(move.magnitude);
         if (move.magnitude != 0)
         {
             Tutoriel.instance.HideWalk();
@@ -102,7 +103,7 @@ public class MainCharacterBehaviour : MonoBehaviour
         else
             anim.SetBool("isMoving", false);
 
-
+        transform.LookAt(transform.position + move);
         transform.position += move * speed * Time.deltaTime;
     }
     public void AddBravo(int count)
