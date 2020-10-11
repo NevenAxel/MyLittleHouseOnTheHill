@@ -210,23 +210,28 @@ public class MainCharacterBehaviour : MonoBehaviour
             currentComboGo.GetComponent<ComboPopup>().Cancel();
             Destroy(currentComboGo);
         }
-        
-        if(currentSteps.Count> 0 && currentCombo>currentSteps[0])
+        ComboPopup.ETypePopup typeCombo = ComboPopup.ETypePopup.eBase;
+        if (currentSteps.Count> 0 && currentCombo>currentSteps[0])
         {
             currentSteps.Remove(currentSteps[0]);
             if (currentSteps.Count > 0)
             {
                 currentBuffAck++;
+                typeCombo = ComboPopup.ETypePopup.eFaster;
                 baseChopForce += buffDamageCombo;
             }
             else
+            {
                 circular = true;
+                typeCombo = ComboPopup.ETypePopup.eCircular;
+            }
+
         }
         if(currentCombo > comboTreshold)
         {
             currentComboGo = Instantiate(PopupCombo, parentCombo);
             currentComboGo.transform.position = parentCombo.transform.position;
-            currentComboGo.GetComponent<ComboPopup>().SetUp(currentCombo, Mathf.Lerp(timeComboBase, timeComboEnd, Mathf.Min(currentCombo / numberHitCombo, 1)));
+            currentComboGo.GetComponent<ComboPopup>().SetUp(currentCombo, Mathf.Lerp(timeComboBase, timeComboEnd, Mathf.Min(currentCombo / numberHitCombo, 1)), typeCombo);
         }
 
     }
