@@ -22,12 +22,14 @@ public class CameraBehaviour : MonoBehaviour
 
     public void OnWoodChopped(object sender, MainCharacterBehaviour.OnWoodChoppedEventArgs e)
     {
+        Debug.Log("aaa");
         if (e.wood > firstMissionWood)
         {
             isParentedToPlayer = true;
             Destroy(GameObject.FindGameObjectWithTag("ColliderTuto"));
+            character.onWoodChopped -= OnWoodChopped;
         }
-        character.onWoodChopped -= OnWoodChopped;
+
 
     }
 
