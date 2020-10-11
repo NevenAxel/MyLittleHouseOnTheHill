@@ -27,6 +27,7 @@ public class CameraTravelling : MonoBehaviour
 
     IEnumerator GoToNext()
     {
+        FindObjectOfType<SoundManager>().PlayEnd(FindObjectOfType<MainCharacterBehaviour>().GetSuccess());
         foreach (Transform t in points)
         {
             Vector3 basePos = camera.transform.position;
